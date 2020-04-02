@@ -2,6 +2,20 @@
 #define LIST_H
 
 template<class T>
+struct Node
+{
+public:
+    Node *pNext;
+    T data;
+
+    Node(T data = T(), Node *pNext = nullptr)
+    {
+        this->data = data;
+        this->pNext = pNext;
+    }
+};
+
+template<class T>
 class List
 {
 public:
@@ -19,20 +33,8 @@ public:
     T &operator[](const int index);
 
 private:
-    class Node
-    {
-    public:
-        Node *pNext;
-        T data;
-
-        Node(T data = T(), Node *pNext = nullptr)
-        {
-            this->data = data;
-            this->pNext = pNext;
-        }
-    };
     int size;
-    Node *head;
+    Node<T> *head;
 };
 
 template<class T>
@@ -51,7 +53,7 @@ List<T>::~List()
 template<class T>
 void List<T>::push_front(T data)
 {
-    head = new Node(data, head);
+    head = new Node<T>(data, head);
     size++;
 }
 
@@ -59,14 +61,14 @@ template<class T>
 void List<T>::push_back(T data)
 {
     if (head == nullptr) {
-        head = new Node(data);
+        head = new Node<T>(data);
     } else {
-        Node *currentNode = this->head;
+        Node<T> *currentNode = this->head;
 
         while (currentNode->pNext != nullptr) {
             currentNode = currentNode->pNext;
         }
-        currentNode->pNext = new Node(data);
+        currentNode->pNext = new Node<T>(data);
     }
     size++;
 }
@@ -75,7 +77,7 @@ template<class T>
 void List<T>::pop_front()
 {
     if (head != nullptr) {
-        Node *tempNode = head;
+        Node<T> *tempNode = head;
         head = head->pNext;
         delete tempNode;
         size--;
@@ -94,13 +96,13 @@ void List<T>::insert(T data, int index)
     if (index == 0) {
         push_front(data);
     } else {
-        Node *previousNode = this->head;
+        Node<T> *previousNode = this->head;
 
         for (int i = 0; i < index - 1; i++) {
             previousNode = previousNode->pNext;
         }
 
-        Node *newNode = new Node(data, previousNode->pNext);
+        Node<T> *newNode = new Node<T>(data, previousNode->pNext);
         previousNode->pNext = newNode;
         size++;
     }
@@ -112,12 +114,12 @@ void List<T>::removeAt(int index)
     if (index == 0) {
         pop_front();
     } else {
-        Node *previousNode = this->head;
+        Node<T> *previousNode = this->head;
         for (int i = 0; i < index - 1; i++) {
             previousNode = previousNode->pNext;
         }
 
-        Node *toDelete = previousNode->pNext;
+        Node<T> *toDelete = previousNode->pNext;
         previousNode->pNext = toDelete->pNext;
         delete toDelete;
         size--;
@@ -137,7 +139,7 @@ T &List<T>::operator[](const int index)
 {
     if (index < getSize()) {
         int counter = 0;
-        Node *currentNode = this->head;
+        Node<T> *currentNode = this->head;
 
         while (currentNode != nullptr) {
             if (counter == index) {
