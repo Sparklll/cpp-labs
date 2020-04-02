@@ -1,0 +1,60 @@
+{
+    "DiskStore": [
+        {
+            "Author": "Valve",
+            "Disk Type": "Game",
+            "Id": "82840d768e224c7dafbd1c2bf979f3ad",
+            "Name": "CS:GO",
+            "Note": "16+",
+            "Price": "9.90"
+        },
+        {
+            "Author": "Marvel",
+            "Disk Type": "Film",
+            "Id": "27a6e88a350d4832ba8a86c0bb39d015",
+            "Name": "Iron Man 3",
+            "Note": "12+",
+            "Price": "10.00"
+        },
+        {
+            "Author": "21 Pilots",
+            "Disk Type": "Music",
+            "Id": "59d923ee751e4887aa838c7c741eb161",
+            "Name": "Stressed out",
+            "Note": "",
+            "Price": "0.50"
+        },
+        {
+            "Author": "21 Pilots",
+            "Disk Type": "Music",
+            "Id": "6a1205dcc762403593b6aa5025add7f7",
+            "Name": "Lane Boy",
+            "Note": "",
+            "Price": "0.50"
+        },
+        {
+            "Author": "John Lock",
+            "Disk Type": "Photo",
+            "Id": "c33eda49d7e34653b630d910727901eb",
+            "Name": "Australian Landscapes",
+            "Note": "",
+            "Price": "12.99"
+        },
+        {
+            "Author": "EDGBsoftGroup",
+            "Disk Type": "Utility",
+            "Id": "a0bfcbeefdd24c77a9f5fc3423187009",
+            "Name": "AdBlocker",
+            "Note": "",
+            "Price": "7.50"
+        },
+        {
+            "Author": "EGsoft",
+            "Disk Type": "Game",
+            "Id": "113f66bbc8274a339c9037d39ead3d1c",
+            "Name": "Space Runner",
+            "Note": "8+",
+            "Price": "1.00"
+        }
+    ]
+}

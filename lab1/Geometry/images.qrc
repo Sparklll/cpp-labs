@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>images/circle.svg</file>
+        <file>images/layout.svg</file>
+        <file>images/oval.svg</file>
+        <file>images/polygon.svg</file>
+        <file>images/rectangle.svg</file>
+        <file>images/using-chlorine.svg</file>
+        <file>images/crayon.svg</file>
+        <file>images/dot.svg</file>
+        <file>images/grid.svg</file>
+        <file>images/paint.svg</file>
+        <file>images/pen.svg</file>
+        <file>images/color-wheel.svg</file>
+        <file>images/cartesian.svg</file>
+        <file>images/reset.svg</file>
+    </qresource>
+</RCC>

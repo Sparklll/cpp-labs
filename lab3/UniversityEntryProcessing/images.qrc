@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>images/saveAs.svg</file>
+        <file>images/save.svg</file>
+        <file>images/reset.svg</file>
+        <file>images/open.svg</file>
+        <file>images/submit.svg</file>
+        <file>images/accept.svg</file>
+        <file>images/search.svg</file>
+        <file>images/background.jpg</file>
+    </qresource>
+</RCC>
