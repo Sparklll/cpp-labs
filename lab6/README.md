@@ -1,2 +1,2 @@
-<h1 align="center">Task 6</h1>
+<h1 align="center">Lab 6(Task 6)</h1>
 <h3 align="center"><img src="test.gif"></h3>
