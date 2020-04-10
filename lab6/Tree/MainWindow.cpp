@@ -55,8 +55,8 @@ void MainWindow::on_findByKeyButton_clicked()
         int key = ui->findByKeyField->text().toInt();
         Node<int, QString> *foundNode = binarySearchTree.findNode(key);
         if (foundNode != nullptr) {
-            QString output = "Key : " + QString::number(foundNode->key)
-                             + ", Data : " + foundNode->data + ".";
+            QString output = "Key : " + QString::number(foundNode->getKey())
+                             + ", Data : " + foundNode->getData() + ".";
             ui->outputBox->appendPlainText(output);
         }
         ui->findByKeyField->clear();
@@ -81,8 +81,8 @@ void MainWindow::on_deleteByKeyButton_clicked()
 void MainWindow::preOrderTraversalOutput(Node<int, QString> *localRoot)
 {
     if (localRoot != nullptr) {
-        QString output = "Key : " + QString::number(localRoot->key) + ", Data : " + localRoot->data
-                         + ".";
+        QString output = "Key : " + QString::number(localRoot->getKey())
+                         + ", Data : " + localRoot->getData() + ".";
 
         ui->outputBox->appendPlainText(output);
         preOrderTraversalOutput(localRoot->leftChild);
@@ -93,8 +93,8 @@ void MainWindow::preOrderTraversalOutput(Node<int, QString> *localRoot)
 void MainWindow::inOrderTraversalOutput(Node<int, QString> *localRoot)
 {
     if (localRoot != nullptr) {
-        QString output = "Key : " + QString::number(localRoot->key) + ", Data : " + localRoot->data
-                         + ".";
+        QString output = "Key : " + QString::number(localRoot->getKey())
+                         + ", Data : " + localRoot->getData() + ".";
 
         inOrderTraversalOutput(localRoot->leftChild);
         ui->outputBox->appendPlainText(output);
@@ -105,8 +105,8 @@ void MainWindow::inOrderTraversalOutput(Node<int, QString> *localRoot)
 void MainWindow::postOrderTraversalOutput(Node<int, QString> *localRoot)
 {
     if (localRoot != nullptr) {
-        QString output = "Key : " + QString::number(localRoot->key) + ", Data : " + localRoot->data
-                         + ".";
+        QString output = "Key : " + QString::number(localRoot->getKey())
+                         + ", Data : " + localRoot->getData() + ".";
 
         postOrderTraversalOutput(localRoot->leftChild);
         postOrderTraversalOutput(localRoot->rightChild);
@@ -158,7 +158,8 @@ void MainWindow::fillTreeView(QTreeWidgetItem *parentItem, Node<int, QString> *n
 {
     if (node != nullptr) {
         QTreeWidgetItem *item = new QTreeWidgetItem();
-        QString itemText = "Key(" + QString::number(node->key) + "), " + "Data(" + node->data + ")";
+        QString itemText = "Key(" + QString::number(node->getKey()) + "), " + "Data("
+                           + node->getData() + ")";
         item->setText(0, itemText);
         if (parentItem == nullptr) {
             ui->treeView->addTopLevelItem(item);

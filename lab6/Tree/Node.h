@@ -5,14 +5,17 @@ template<class K, class D>
 class Node
 {
 public:
-    K key;
-    D data;
+    Node(K key, D data);
     Node<K, D> *leftChild;
     Node<K, D> *rightChild;
 
-    Node(K key, D data);
+    K getKey() const;
+    D getData() const;
+    void setData(const D &value);
 
 private:
+    K key;
+    D data;
 };
 
 template<class K, class D>
@@ -22,6 +25,24 @@ Node<K, D>::Node(K key, D data)
     this->data = data;
     leftChild = nullptr;
     rightChild = nullptr;
+}
+
+template<class K, class D>
+K Node<K, D>::getKey() const
+{
+    return key;
+}
+
+template<class K, class D>
+D Node<K, D>::getData() const
+{
+    return data;
+}
+
+template<class K, class D>
+void Node<K, D>::setData(const D &value)
+{
+    data = value;
 }
 
 #endif // NODE_H

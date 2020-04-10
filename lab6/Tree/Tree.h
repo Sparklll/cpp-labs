@@ -56,8 +56,8 @@ Node<K, D> *Tree<K, D>::findNode(K key)
     Node<K, D> *current = root;
 
     if (current != nullptr) {
-        while (current->key != key) {
-            if (key < current->key) {
+        while (current->getKey() != key) {
+            if (key < current->getKey()) {
                 current = current->leftChild;
             } else {
                 current = current->rightChild;
@@ -107,7 +107,7 @@ void Tree<K, D>::insertNode(K key, D data)
         while (searchPosition) {
             parent = current;
 
-            if (key < current->key) {
+            if (key < current->getKey()) {
                 isLeftChild = true;
                 current = current->leftChild;
                 if (current == nullptr) {
@@ -115,10 +115,10 @@ void Tree<K, D>::insertNode(K key, D data)
                     searchPosition = false;
                 }
 
-            } else if (key == current->key) {
-                current->data = data;
+            } else if (key == current->getKey()) {
+                current->setData(data);
                 searchPosition = false;
-            } else if (key > current->key) {
+            } else if (key > current->getKey()) {
                 isLeftChild = false;
                 current = current->rightChild;
                 if (current == nullptr) {
@@ -138,9 +138,9 @@ void Tree<K, D>::deleteNode(K key)
     bool isLeftChild = true;
 
     if (current != nullptr) {
-        while (current->key != key) {
+        while (current->getKey() != key) {
             parent = current;
-            if (key < current->key) {
+            if (key < current->getKey()) {
                 isLeftChild = true;
                 current = current->leftChild;
             } else {
