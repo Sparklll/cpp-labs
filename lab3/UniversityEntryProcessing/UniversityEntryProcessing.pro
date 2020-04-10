@@ -17,14 +17,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Enrollee.cpp \
-    List.cpp \
     TableWidget.cpp \
     main.cpp \
     MainWindow.cpp
 
 HEADERS += \
     Enrollee.h \
-    List.h \
     MainWindow.h \
     TableWidget.h
 
