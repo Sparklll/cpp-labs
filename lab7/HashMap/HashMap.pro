@@ -20,7 +20,10 @@ SOURCES += \
     MainWindow.cpp
 
 HEADERS += \
-    MainWindow.h
+    HashMap.h \
+    HashNode.h \
+    HashNodeList.h \
+    MainWindow.h \
 
 FORMS += \
     MainWindow.ui

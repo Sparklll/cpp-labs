@@ -1,0 +1,106 @@
+#ifndef SORTEDLIST_H
+#define SORTEDLIST_H
+
+#include "HashNode.h"
+
+template<class K, class V>
+class List
+{
+public:
+    List();
+    ~List();
+
+    HashNode<K, V> *findElement(K key);
+    void insertElement(HashNode<K, V> *node);
+    void deleteElement(K key);
+
+    HashNode<K, V> *getHead() const;
+
+private:
+    HashNode<K, V> *head;
+};
+
+template<class K, class V>
+List<K, V>::List()
+{
+    head = nullptr;
+}
+
+template<class K, class V>
+List<K, V>::~List()
+{
+    HashNode<K, V> *current = head;
+
+    while (current != nullptr) {
+        HashNode<K, V> *removableNode = current;
+        current = current->next;
+        delete removableNode;
+    }
+}
+
+template<class K, class V>
+HashNode<K, V> *List<K, V>::getHead() const
+{
+    return head;
+}
+
+template<class K, class V>
+HashNode<K, V> *List<K, V>::findElement(K key)
+{
+    HashNode<K, V> *current = head;
+
+    while (current != nullptr && current->getKey() <= key) {
+        if (current->getKey() == key) {
+            return current;
+        }
+        current = current->next;
+    }
+    return nullptr;
+}
+
+template<class K, class V>
+void List<K, V>::insertElement(HashNode<K, V> *node)
+{
+    K key = node->getKey();
+    HashNode<K, V> *previous = nullptr;
+    HashNode<K, V> *current = head;
+
+    while (current != nullptr && key > current->getKey()) {
+        previous = current;
+        current = current->next;
+    }
+
+    /*if (current != nullptr && current->getKey() == node->getKey()) {
+        current->setValue(node->getValue());
+        return;
+    } else*/
+    if (previous == nullptr) {
+        head = node;
+    } else {
+        previous->next = node;
+    }
+    node->next = current;
+}
+
+template<class K, class V>
+void List<K, V>::deleteElement(K key)
+{
+    HashNode<K, V> *previous = nullptr;
+    HashNode<K, V> *current = head;
+
+    while (current != nullptr && key != current->getKey()) {
+        previous = current;
+        current = current->next;
+    }
+
+    if (previous == nullptr && current != nullptr) {
+        head = current->next;
+    } else if (previous != nullptr && current != nullptr) {
+        previous->next = current->next;
+    } else {
+        return;
+    }
+    delete current;
+}
+
+#endif // SORTEDLIST_H
