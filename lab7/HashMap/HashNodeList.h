@@ -1,5 +1,5 @@
-#ifndef SORTEDLIST_H
-#define SORTEDLIST_H
+#ifndef HASHNODELIST_H
+#define HASHNODELIST_H
 
 #include "HashNode.h"
 
@@ -102,4 +102,4 @@ void HashNodeList<K, V>::deleteElement(K key)
     delete current;
 }
 
-#endif // SORTEDLIST_H
+#endif
