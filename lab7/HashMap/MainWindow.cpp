@@ -11,7 +11,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     qsrand(time(0));
     ui->numberOfElementsField->setValidator(new QRegExpValidator(*new QRegExp("[1-9][0-9]+"), this));
-    generateSimplePassword(20);
 }
 
 MainWindow::~MainWindow()
@@ -19,7 +18,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-QString MainWindow::generateSimplePassword(int passwordLength)
+QString MainWindow::generatePassword(int passwordLength)
 {
     QString passwordAlphabet
         = "|my!;Q_^]@:tjUgZEI/hlOrJFq(#ep{fCcx~+iPvAD=.Vn,<SbNo'RHw>K$s`LBMGuY)W*[-kza%}dT&X?~";
@@ -33,6 +32,7 @@ QString MainWindow::generateSimplePassword(int passwordLength)
     return result;
 }
 
+// Hash function for HashMap<QString, QString> case
 template<>
 int HashMap<QString, QString>::hashFunction(QString key)
 {
@@ -75,7 +75,7 @@ void MainWindow::on_fillHashMapButton_clicked()
         hashMap = new HashMap<QString, QString>(32);
         for (int i = 0; i < numberOfElements; i++) {
             HashNode<QString, QString> *newNode
-                = new HashNode<QString, QString>(generateSimplePassword(rand() % 8 + 1), "");
+                = new HashNode<QString, QString>(generatePassword(rand() % 8 + 1), "");
             hashMap->insertNode(newNode);
         }
         updateHashMapView();
@@ -125,12 +125,24 @@ void MainWindow::on_findElementButton_clicked()
     }
 }
 
+// Hash function for HashMap<int, QString> case, i.e task case
+template<>
+int HashMap<int, QString>::hashFunction(int key)
+{
+    //Knuth's multiplicative method of hash for integers
+    unsigned long long hash = key * 2654435761 >> 32;
+    return hash % getArraySize();
+}
+
 void MainWindow::on_solveTaskButton_clicked()
 {
     ui->outputBox->clear();
     HashMap<int, QString> *taskHashMap = new HashMap<int, QString>(32);
 
-    // Filling with random number (in range 1-100) of random int keys(in range 1-10000)
+    // Filling the HashMap with random number (in range 1-100) of random int keys(in range 1-10000)
+    // (value fields are not used for simplicity, they are empty strings),
+    // ==> represents a pointer to the next element,
+    // as an example, HashMap size selected (32)
     int numberOfElements = qrand() % 100 + 1;
     int sumOfKeys = 0;
     for (int i = 0; i < numberOfElements; i++) {
@@ -160,13 +172,4 @@ void MainWindow::on_solveTaskButton_clicked()
     ui->outputBox->insertPlainText("Average key value : " + QString::number(averageKeyValue) + "\n");
     ui->outputBox->insertPlainText("Answer : " + QString::number(numOfElemsWithKeyMoreThanAverage)
                                    + "\n");
-}
-
-// Special hashFunction for task
-template<>
-int HashMap<int, QString>::hashFunction(int key)
-{
-    //Knuth's multiplicative method of hash for integers
-    unsigned long long hash = key * 2654435761 >> 32;
-    return hash % getArraySize();
 }

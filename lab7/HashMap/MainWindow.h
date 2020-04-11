@@ -17,7 +17,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    QString generateSimplePassword(int passwordLength);
+    QString generatePassword(int passwordLength);
     void updateHashMapView();
 
 private slots:
