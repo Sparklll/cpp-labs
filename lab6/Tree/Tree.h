@@ -117,6 +117,7 @@ void Tree<K, D>::insertNode(K key, D data)
 
             } else if (key == current->getKey()) {
                 current->setData(data);
+                delete newNode;
                 searchPosition = false;
             } else if (key > current->getKey()) {
                 isLeftChild = false;
